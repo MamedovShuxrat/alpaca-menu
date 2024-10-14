@@ -1,0 +1,16 @@
+.header {
+    background: $main-dark;
+
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 17px 122px;
+    }
+
+    &__phone {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+}
