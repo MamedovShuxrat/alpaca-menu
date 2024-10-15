@@ -12,5 +12,9 @@
         display: flex;
         align-items: center;
         gap: 10px;
+
+        &-number {
+            text-wrap: nowrap;
+        }
     }
 }

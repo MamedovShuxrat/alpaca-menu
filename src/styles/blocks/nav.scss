@@ -1,49 +1,105 @@
 .nav {
     &__list {
         display: flex;
-        list-style: none;
-        padding: 0;
-        margin: 0;
+        column-gap: 40px;
     }
 
     &__item {
         position: relative;
+        border: 1px solid;
 
-        &--dropdown:hover .nav__dropdown {
+
+        &--dropdown:hover .nav__dropdown,
+        &--dropdown .nav__dropdown:hover {
             display: block;
         }
+
+        &--dropdown:hover .nav__link-arrow {
+            transform: rotate(180deg);
+        }
+
+        &--dropdown:hover .nav__link {
+            color: $main-accent;
+        }
+
     }
 
     &__link {
+        @include defaultPadding;
+        @include fsz18;
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        text-wrap: nowrap;
+        transition: all .3s ease-in-out;
 
-        &:hover {
-            color: $main-accent;
+        &-arrow {
+            width: 8px;
+            height: 6px;
+            transition: all .3s ease-in-out;
         }
+
+
     }
 
     &__dropdown {
         display: none;
         position: absolute;
-        background: $main-dark;
-        padding: 8px 18px;
-        top: 100%;
+        background: rgb(37, 40, 48);
+        top: 40px;
         left: 0;
         min-width: 320px;
+        border-radius: 0px 0px 8px 8px;
 
-        &__item {
+        &::before {
+            content: '';
+            position: absolute;
+            top: -14px;
+            left: 40px;
+            width: 28px;
+            height: 14px;
+            background: url('/public/drop-arrow.svg') center/cover no-repeat;
+            z-index: 1;
+        }
+
+        &-item {
+            @include defaultPadding;
+            transition: all .3s ease-in-out;
+
+            &:hover {
+                background: $main-dark;
+            }
+
             &--sub-dropdown:hover .nav__sub-dropdown {
                 display: block;
             }
 
-            &__link {
+            &--sub-dropdown:hover .nav__dropdown-link-arrow {
+                transform: rotate(90deg)
+            }
+
+            &-link {
+                @include fsz16;
                 padding: 10px;
                 display: block;
                 color: #333;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
 
                 &:hover {
                     background: #f5f5f5;
                 }
+
+                &-arrow {
+                    transition: all .3s ease-in-out;
+                }
             }
+
+            &:not(:first-child) {
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
         }
     }
 
@@ -52,7 +108,22 @@
         position: absolute;
         top: 0;
         left: 100%;
-        background: #fff;
         border: 1px solid #ccc;
+
+        &-link {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            column-gap: 5px;
+            transition: all .3s ease-in-out;
+
+            &-arrow {
+                width: 8px;
+                height: 6px;
+                transition: all .3s ease-in-out;
+            }
+        }
     }
 }
