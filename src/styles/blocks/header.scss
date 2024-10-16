@@ -5,8 +5,16 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 17px 122px;
+        @include headerPadding;
     }
+
+
+    &__logo {
+        width: 45px;
+        height: 45px;
+        object-fit: cover;
+    }
+
 
     &__phone {
         display: flex;
@@ -17,4 +25,24 @@
             text-wrap: nowrap;
         }
     }
+}
+
+@media (max-width: 425px) {
+
+    .header {
+        &__inner {
+            column-gap: 20px;
+        }
+
+        &__phone {
+            margin-left: auto;
+
+            &-number {
+                display: none;
+            }
+
+        }
+
+    }
+
 }

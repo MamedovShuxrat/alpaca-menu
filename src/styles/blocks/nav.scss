@@ -6,8 +6,6 @@
 
     &__item {
         position: relative;
-        border: 1px solid;
-
 
         &--dropdown:hover .nav__dropdown,
         &--dropdown .nav__dropdown:hover {
@@ -22,6 +20,36 @@
             color: $main-accent;
         }
 
+        &--second_dropdown {
+            position: relative;
+
+            &:hover .nav__sub-dropdown_wrapper {
+                display: block;
+            }
+
+            .nav__sub-dropdown-wrapper {
+                display: flex;
+
+                .nav__sub-dropdown-link {
+                    display: inline-block;
+                    align-items: center;
+                    column-gap: 5px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    max-width: 300px;
+                }
+
+                .nav__dropdown-link-arrow {
+                    transition: all .3s ease-in-out;
+                }
+            }
+
+            &:hover .nav__dropdown-link-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
     }
 
     &__link {
@@ -30,7 +58,7 @@
         display: flex;
         align-items: center;
         column-gap: 5px;
-        text-wrap: nowrap;
+        white-space: nowrap;
         transition: all .3s ease-in-out;
 
         &-arrow {
@@ -39,7 +67,9 @@
             transition: all .3s ease-in-out;
         }
 
-
+        &:hover {
+            color: $main-accent;
+        }
     }
 
     &__dropdown {
@@ -48,7 +78,7 @@
         background: rgb(37, 40, 48);
         top: 40px;
         left: 0;
-        min-width: 320px;
+        width: 320px;
         border-radius: 0px 0px 8px 8px;
 
         &::before {
@@ -64,7 +94,8 @@
 
         &-item {
             @include defaultPadding;
-            transition: all .3s ease-in-out;
+            @include fsz16;
+            display: block;
 
             &:hover {
                 background: $main-dark;
@@ -78,52 +109,131 @@
                 transform: rotate(90deg)
             }
 
-            &-link {
-                @include fsz16;
-                padding: 10px;
-                display: block;
-                color: #333;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
 
-                &:hover {
-                    background: #f5f5f5;
-                }
+            &--sub-dropdown {
+                &-link {
+                    @include fsz16;
+                    padding: 10px;
+                    display: block;
+                    color: #333;
+                    display: flex;
+                    gap: 5px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
 
-                &-arrow {
-                    transition: all .3s ease-in-out;
+                    &:hover {
+                        background: #f5f5f5;
+                    }
+
+                    &-arrow {
+                        transition: all .3s ease-in-out;
+                    }
                 }
             }
+
 
             &:not(:first-child) {
                 border: 1px solid rgba(255, 255, 255, 0.1);
             }
 
+            &:last-child:hover {
+                border-radius: 0 0 8px 8px;
+            }
+
         }
     }
 
-    &__sub-dropdown {
+    &__sub-dropdown_wrapper {
         display: none;
         position: absolute;
-        top: 0;
+        bottom: 0;
         left: 100%;
-        border: 1px solid #ccc;
+        padding-left: 40px;
+    }
 
-        &-link {
-            overflow: hidden;
-            text-overflow: ellipsis;
+    &__sub-dropdown {
+        background: rgb(37, 40, 48);
+        border-radius: 8px;
+        position: relative;
+        transition: all .3s ease-in-out;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50px;
+            left: -20px;
+            width: 28px;
+            height: 14px;
+            background: url('/public/drop-arrow.svg') center / cover no-repeat;
+            z-index: 1;
+            transform: rotate(-90deg);
+
+        }
+
+        &-item {
+            @include defaultPadding;
             white-space: nowrap;
-            display: flex;
-            align-items: center;
-            column-gap: 5px;
-            transition: all .3s ease-in-out;
+            z-index: 3;
+            position: relative;
 
-            &-arrow {
-                width: 8px;
-                height: 6px;
-                transition: all .3s ease-in-out;
+            &:hover {
+                background-color: $main-dark;
             }
+
+            &:first-child {
+                border-radius: 8px 8px 0 0;
+            }
+
+            &:last-child {
+                border-radius: 0 0 8px 8px;
+            }
+
+            &-refer {
+                @include defaultPadding;
+
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                display: flex;
+                align-items: center;
+                column-gap: 5px;
+                transition: all .3s ease-in-out;
+
+                &-arrow {
+                    width: 8px;
+                    height: 6px;
+                    transition: all .3s ease-in-out;
+                }
+            }
+
+        }
+    }
+}
+
+
+@media (max-width: 1220px) {
+    .nav {
+        &__list {
+            column-gap: 10px;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .nav {
+        &__list {
+            column-gap: 5px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+
+        &__list {
+            column-gap: 10px;
         }
     }
 }
