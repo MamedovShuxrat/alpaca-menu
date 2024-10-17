@@ -30,6 +30,7 @@
             .nav__sub-dropdown-wrapper {
                 display: flex;
 
+
                 .nav__sub-dropdown-link {
                     display: inline-block;
                     align-items: center;
@@ -61,6 +62,7 @@
         white-space: nowrap;
         transition: all .3s ease-in-out;
 
+
         &-arrow {
             width: 8px;
             height: 6px;
@@ -80,6 +82,13 @@
         left: 0;
         width: 320px;
         border-radius: 0px 0px 8px 8px;
+
+        &-link {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 300px;
+        }
 
         &::before {
             content: '';
