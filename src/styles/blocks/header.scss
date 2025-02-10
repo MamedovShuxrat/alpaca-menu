@@ -20,6 +20,11 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        transition: opacity ease-in-out .3s;
+
+        &:hover {
+            opacity: .8;
+        }
 
         &-number {
             text-wrap: nowrap;

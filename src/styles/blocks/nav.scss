@@ -7,6 +7,12 @@
     &__item {
         position: relative;
 
+        &--dropdown {
+            &:hover .nav__dropdown {
+                display: block;
+            }
+        }
+
         &--dropdown:hover .nav__dropdown,
         &--dropdown .nav__dropdown:hover {
             display: block;
@@ -29,7 +35,6 @@
 
             .nav__sub-dropdown-wrapper {
                 display: flex;
-
 
                 .nav__sub-dropdown-link {
                     display: inline-block;
@@ -105,6 +110,9 @@
             @include defaultPadding;
             @include fsz16;
             display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
 
             &:hover {
                 background: $main-dark;
